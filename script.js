@@ -34,3 +34,14 @@ const operate = function (operator, variableX, variableY) {
             break;
     }
 }
+
+let displayBox = document.querySelector('#display-box');
+let displayValue = '';
+const digitButtons = document.querySelectorAll('#button-digits button');
+
+digitButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        displayValue += button.textContent;
+        displayBox.textContent = displayValue;
+    });
+});
