@@ -38,10 +38,22 @@ const operate = function (operator, variableX, variableY) {
 let displayBox = document.querySelector('#display-box');
 let displayValue = '';
 const digitButtons = document.querySelectorAll('#button-digits button');
+const operatorButtons = document.querySelectorAll('#button-operators button');
 
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
         displayValue += button.textContent;
+        displayBox.textContent = displayValue;
+    });
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        if (displayValue !== '') {
+            displayValue += ' ' + button.textContent + ' ';
+        } else {
+            displayValue += button.textContent;
+        }
         displayBox.textContent = displayValue;
     });
 });
