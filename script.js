@@ -30,6 +30,7 @@ const operate = function (operator, ...variables) {
             return divide(...variables);
     }
 }
+
 let displayValue = '';
 let stringValue = '';
 let numberValue = 0;
@@ -70,5 +71,6 @@ operatorButtons.forEach(button => {
 
 operateButton.addEventListener('click', function() {
     updateDisplay(operateButton.textContent);
-
+    variables.push(parseFloat(stringValue))
+    stringValue = '';
 });
