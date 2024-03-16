@@ -32,7 +32,7 @@ const operate = function (operator, ...variables) {
 }
 
 let displayValue = '';
-let stringValue = '';
+let digitValue = '';
 let numberValue = 0;
 const operators = [];
 const variables = [];
@@ -54,26 +54,27 @@ function updateDisplay(button) {
     displayBox.textContent = displayValue;
 }
 
-function storeValues() {
-    variables.push(parseFloat(stringValue))
-    stringValue = '';
+function storeDigits() {
+    variables.push(parseFloat(digitValue))
+    digitValue = '';
 }
 
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
-        stringValue += button.textContent;
+        digitValue += button.textContent;
     });
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
-        storeValues();
+        storeDigits();
+        operators.push(button.textContent) // Store operators
     });
 });
 
 operateButton.addEventListener('click', function() {
     updateDisplay(operateButton.textContent);
-    storeValues();
+    storeDigits();
 });
