@@ -54,6 +54,11 @@ function updateDisplay(button) {
     displayBox.textContent = displayValue;
 }
 
+function storeValues() {
+    variables.push(parseFloat(stringValue))
+    stringValue = '';
+}
+
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
@@ -64,13 +69,11 @@ digitButtons.forEach(button => {
 operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
-        variables.push(parseFloat(stringValue))
-        stringValue = '';
+        storeValues();
     });
 });
 
 operateButton.addEventListener('click', function() {
     updateDisplay(operateButton.textContent);
-    variables.push(parseFloat(stringValue))
-    stringValue = '';
+    storeValues();
 });
