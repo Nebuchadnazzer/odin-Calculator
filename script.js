@@ -30,13 +30,14 @@ const operate = function (operator, ...variables) {
             return divide(...variables);
     }
 }
-
-let displayBox = document.querySelector('#display-box');
 let displayValue = '';
+let stringValue = '';
+let numberValue = 0;
 const operators = [];
 const variables = [];
 const displayResults = 0;
 
+let displayBox = document.querySelector('#display-box');
 const digitButtons = document.querySelectorAll('#button-digits button');
 const operatorButtons = document.querySelectorAll('#button-operators button');
 const operateButton = document.querySelector('#operator-equals');
@@ -55,15 +56,19 @@ function updateDisplay(button) {
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
+        stringValue += button.textContent;
     });
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
+        variables.push(parseFloat(stringValue))
+        stringValue = '';
     });
 });
 
 operateButton.addEventListener('click', function() {
-    updateDisplay(button.textContent);
+    updateDisplay(operateButton.textContent);
+
 });
