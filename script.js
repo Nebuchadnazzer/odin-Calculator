@@ -18,42 +18,52 @@ const divide = function (x, y) {
     return x / y;
 }
 
-const operate = function (operator, variableX, variableY) {
+const operate = function (operator, ...variables) {
     switch (operator) {
         case '+':
-            add(variableX, variableY);
-            break;
+            return add(...variables);
         case '-':
-            subtract(variableX, variableY);
-            break;
+            return subtract(...variables);
         case '*':
-            multiply(variableX, variableY);
-            break;
+            return multiply(...variables);
         case '/':
-            divide(variableX, variableY);
-            break;
+            return divide(...variables);
     }
 }
 
 let displayBox = document.querySelector('#display-box');
 let displayValue = '';
+const operators = [];
+const variables = [];
+const displayResults = 0;
+
 const digitButtons = document.querySelectorAll('#button-digits button');
 const operatorButtons = document.querySelectorAll('#button-operators button');
+const operateButton = document.querySelector('#operator-equals');
+
+function updateDisplay(button) {
+    if (!isNaN(button)) {
+        displayValue += button
+    } else if (button === '+' || button === '-' || button === '*' || button === '/') {
+        displayValue += ' ' + button + ' ';
+    } else if (button === '=' ) {
+        displayValue += ' ' + button;
+    }
+    displayBox.textContent = displayValue;
+}
 
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
-        displayValue += button.textContent;
-        displayBox.textContent = displayValue;
+        updateDisplay(button.textContent);
     });
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
-        if (displayValue !== '') {
-            displayValue += ' ' + button.textContent + ' ';
-        } else {
-            displayValue += button.textContent;
-        }
-        displayBox.textContent = displayValue;
+        updateDisplay(button.textContent);
     });
+});
+
+operateButton.addEventListener('click', function() {
+    updateDisplay(button.textContent);
 });
