@@ -53,15 +53,12 @@ const operateButton = document.querySelector('#operator-equals');
 function updateDisplay(button) {
     if (!isNaN(button)) {
         displayValue += button
-    } else if (button === '+' || button === '-' || button === '*' || button === '/') {
-        displayValue += ' ' + button + ' ';
+    } else if (['+', '-', '*', '/'].includes(button)) {
+        displayValue +=  ` ${button} `;
     } else if (button === '=' ) {
-        if (hasDecimal(results)){
-            roundedResults = results.toFixed(4);
-            displayValue += ' ' + button + ' ' + roundedResults;
-        } else {
-        displayValue += ' ' + button + ' ' + results;
-    }}
+        const displayResults = hasDecimal(results) ? results.toFixed(4) : results;
+        displayValue += ` ${button} ${displayResults}`;
+    }
     displayBox.textContent = displayValue;
 }
 
@@ -85,7 +82,7 @@ operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
         updateDisplay(button.textContent);
         storeDigits();
-        operators.push(button.textContent) // Store operators
+        operators.push(button.textContent)
     });
 });
 
