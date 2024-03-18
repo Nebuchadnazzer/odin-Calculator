@@ -17,7 +17,7 @@ const divide = function (x, y) {
 const operate = function (variables, operators) {
     let result = variables[0]; // Initialize result with the first variable
     for (let i = 0; i < operators.length; i++) {
-        const operator = operators[i];
+        const operator = operators[i]; 
         const nextVariable = variables[i + 1];
         switch (operator) {
             case '+':
@@ -39,7 +39,7 @@ const operate = function (variables, operators) {
 
 let displayValue = '';
 let digitValue = '';
-let results;
+let results = Infinity;
 
 const operators = [];
 const variables = [];
@@ -55,7 +55,7 @@ function updateDisplay(button) {
     } else if (button === '+' || button === '-' || button === '*' || button === '/') {
         displayValue += ' ' + button + ' ';
     } else if (button === '=' ) {
-        displayValue += ' ' + button;
+        displayValue += ' ' + button + ' ' + results;
     }
     displayBox.textContent = displayValue;
 }
@@ -81,7 +81,7 @@ operatorButtons.forEach(button => {
 });
 
 operateButton.addEventListener('click', function() {
-    updateDisplay(operateButton.textContent);
     storeDigits();
     results = operate(variables, operators);
+    updateDisplay(operateButton.textContent);
 });
