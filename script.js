@@ -39,7 +39,8 @@ const operate = function (variables, operators) {
 
 let displayValue = '';
 let digitValue = '';
-let results = Infinity;
+let results;
+let roundedResults;
 
 const operators = [];
 const variables = [];
@@ -55,9 +56,17 @@ function updateDisplay(button) {
     } else if (button === '+' || button === '-' || button === '*' || button === '/') {
         displayValue += ' ' + button + ' ';
     } else if (button === '=' ) {
+        if (hasDecimal(results)){
+            roundedResults = results.toFixed(4);
+            displayValue += ' ' + button + ' ' + roundedResults;
+        } else {
         displayValue += ' ' + button + ' ' + results;
-    }
+    }}
     displayBox.textContent = displayValue;
+}
+
+function hasDecimal(num) {
+    return num % 1 !==0;
 }
 
 function storeDigits() {
