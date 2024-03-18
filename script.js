@@ -1,7 +1,3 @@
-let variableX;
-let variableY;
-let operator;
-
 const add = function (x, y) {
     return x + y;
 }
@@ -18,25 +14,35 @@ const divide = function (x, y) {
     return x / y;
 }
 
-const operate = function (operator, ...variables) {
-    switch (operator) {
-        case '+':
-            return add(...variables);
-        case '-':
-            return subtract(...variables);
-        case '*':
-            return multiply(...variables);
-        case '/':
-            return divide(...variables);
+const operate = function (variables, operators) {
+    let result = variables[0]; // Initialize result with the first variable
+    for (let i = 0; i < operators.length; i++) {
+        const operator = operators[i];
+        const nextVariable = variables[i + 1];
+        switch (operator) {
+            case '+':
+                result = add(result, nextVariable);
+                break;
+            case '-':
+                result = subtract(result, nextVariable);
+                break;
+            case '*':
+                result = multiply(result, nextVariable);
+                break;
+            case '/':
+                result = divide(result, nextVariable);
+                break;
+        }
     }
+    return result;
 }
 
 let displayValue = '';
 let digitValue = '';
-let numberValue = 0;
+let results;
+
 const operators = [];
 const variables = [];
-const displayResults = 0;
 
 let displayBox = document.querySelector('#display-box');
 const digitButtons = document.querySelectorAll('#button-digits button');
@@ -77,4 +83,5 @@ operatorButtons.forEach(button => {
 operateButton.addEventListener('click', function() {
     updateDisplay(operateButton.textContent);
     storeDigits();
+    results = operate(variables, operators);
 });
