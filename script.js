@@ -15,7 +15,7 @@ const divide = function (x, y) {
 }
 
 const operate = function (variables, operators) {
-    let result = variables[0]; // Initialize result with the first variable
+    let result = variables[0];
     for (let i = 0; i < operators.length; i++) {
         const operator = operators[i]; 
         const nextVariable = variables[i + 1];
@@ -40,7 +40,6 @@ const operate = function (variables, operators) {
 let displayValue = '';
 let digitValue = '';
 let results;
-let roundedResults;
 
 const operators = [];
 const variables = [];
@@ -49,6 +48,7 @@ let displayBox = document.querySelector('#display-box');
 const digitButtons = document.querySelectorAll('#button-digits button');
 const operatorButtons = document.querySelectorAll('#button-operators button');
 const operateButton = document.querySelector('#operator-equals');
+const clearButton = document.querySelector('#button-clear')
 
 function updateDisplay(button) {
     if (!isNaN(button)) {
@@ -73,16 +73,16 @@ function storeDigits() {
 
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
-        updateDisplay(button.textContent);
         digitValue += button.textContent;
+        updateDisplay(button.textContent);
     });
 });
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', function() {
-        updateDisplay(button.textContent);
         storeDigits();
         operators.push(button.textContent)
+        updateDisplay(button.textContent);
     });
 });
 
@@ -90,4 +90,12 @@ operateButton.addEventListener('click', function() {
     storeDigits();
     results = operate(variables, operators);
     updateDisplay(operateButton.textContent);
+});
+
+clearButton.addEventListener('click', function() {
+    displayValue = '';
+    digitValue = '';
+    operators.length = 0;
+    variables.length = 0;
+    displayBox.textContent = '';
 });
