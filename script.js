@@ -34,12 +34,12 @@ const operate = function (variables, operators) {
                 break;
         }
     }
-    return result;
+    return result
 }
 
 let displayValue = '';
 let digitValue = '';
-let results;
+let results = 0;
 
 const operators = [];
 const variables = [];
@@ -48,11 +48,14 @@ let displayBox = document.querySelector('#display-box');
 const digitButtons = document.querySelectorAll('#button-digits button');
 const operatorButtons = document.querySelectorAll('#button-operators button');
 const operateButton = document.querySelector('#operator-equals');
-const clearButton = document.querySelector('#button-clear')
+const clearButton = document.querySelector('#button-clear');
+const decimalButton = document.querySelector('#button-decimal');
 
 function updateDisplay(button) {
     if (!isNaN(button)) {
-        displayValue += button
+        displayValue += button;
+    } else if (['.'].includes(button)) {
+        displayValue += button;
     } else if (['+', '-', '*', '/'].includes(button)) {
         displayValue +=  ` ${button} `;
     } else if (button === '=' ) {
@@ -83,6 +86,7 @@ operatorButtons.forEach(button => {
         storeDigits();
         operators.push(button.textContent)
         updateDisplay(button.textContent);
+        decimalButton.disabled = false;
     });
 });
 
@@ -92,9 +96,18 @@ operateButton.addEventListener('click', function() {
     updateDisplay(operateButton.textContent);
 });
 
+decimalButton.addEventListener('click', function() {
+    if (displayValue !== ''){
+        digitValue += decimalButton.textContent;
+        updateDisplay(decimalButton.textContent);
+        decimalButton.disabled = true;
+    }
+});
+
 clearButton.addEventListener('click', function() {
     displayValue = '';
     digitValue = '';
+    results = 0;
     operators.length = 0;
     variables.length = 0;
     displayBox.textContent = '';
