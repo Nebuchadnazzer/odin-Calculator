@@ -76,8 +76,10 @@ function storeDigits() {
 
 digitButtons.forEach(button => {
     button.addEventListener('click', function() {
-        digitValue += button.textContent;
-        updateDisplay(button.textContent);
+        if (!isNaN(button.textContent) ){
+            digitValue += button.textContent;
+            updateDisplay(button.textContent);
+        }
     });
 });
 

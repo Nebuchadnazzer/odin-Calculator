@@ -8,30 +8,44 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- <div>
-        <header>ODIN Calculator</header>
-    </div> -->
-    <div id="display-box"></div>
-    <div id="button-operators">
-        <button id="operator-add">+</button>
-        <button id="operator-subtract">-</button>
-        <button id="operator-multiply">*</button>
-        <button id="operator-divide">/</button>
+    <div id="calculator-container">
+        <div id="display-box"></div>
+        <div id="pad-with-clear">
+            <div id="pad">
+                <div id="button-digits">
+                    <div class="row">
+                        <button id="digit-seven">7</button>
+                        <button id="digit-eight">8</button>
+                        <button id="digit-nine">9</button>
+                    </div>
+                    <div class="row">
+                        <button id="digit-four">4</button>
+                        <button id="digit-five">5</button>
+                        <button id="digit-six">6</button>   
+                    </div>
+                    <div class="row">
+                        <button id="digit-one">1</button>
+                        <button id="digit-two">2</button>
+                        <button id="digit-three">3</button>
+                    </div>
+                    <div class="row">
+                        <button id="digit-zero">0</button>
+                        <button id="button-decimal">.</button>
+                        <button id="operator-equals">=</button>
+                    </div>
+                </div>
+                <div id="button-operators">
+                    <button id="operator-divide">/</button>
+                    <button id="operator-multiply">*</button>
+                    <button id="operator-subtract">-</button>
+                    <button id="operator-add">+</button>
+                </div>
+            </div>
+            <div id="button-clear-container">
+                <button id="button-clear">clr</button>
+            </div>
+        </div>
+
     </div>
-    <button id="operator-equals">=</button>
-    <button id="button-clear">clr</button>
-    <div id="button-digits">
-        <button id="digit-zero">0</button>
-        <button id="digit-one">1</button>
-        <button id="digit-two">2</button>
-        <button id="digit-three">3</button>
-        <button id="digit-four">4</button>
-        <button id="digit-five">5</button>
-        <button id="digit-six">6</button>
-        <button id="digit-seven">7</button>
-        <button id="digit-eight">8</button>
-        <button id="digit-nine">9</button>       
-    </div>
-    <button id="button-decimal">.</button>
 </body>
 </html>
