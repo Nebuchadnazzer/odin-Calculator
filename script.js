@@ -50,6 +50,7 @@ const operatorButtons = document.querySelectorAll('#button-operators button');
 const operateButton = document.querySelector('#operator-equals');
 const clearButton = document.querySelector('#button-clear');
 const decimalButton = document.querySelector('#button-decimal');
+const backspaceButton = document.querySelector('#button-backspace');
 
 function updateDisplay(button) {
     if (!isNaN(button)) {
@@ -113,4 +114,9 @@ clearButton.addEventListener('click', function() {
     operators.length = 0;
     variables.length = 0;
     displayBox.textContent = '';
+});
+
+backspaceButton.addEventListener('click', function() {
+    displayValue = displayValue.slice(0, -1)
+    updateDisplay();
 });
