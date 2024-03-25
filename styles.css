@@ -1,5 +1,13 @@
+#calculator-container {
+    background-color: #21213f;
+    border-radius: 10px;
+    width: 200px;
+    height: 320px;
+}
+
 #display-box {
-    width: 160px;
+    background-color: white;
+    width: 150px;
     height: 40px;
     padding: 10px;
     margin: 10px;
@@ -23,10 +31,8 @@ button {
     display: inline-block;
     margin: 1px;
     margin-bottom: 4px;
-}
-
-button:hover {
-    background-color: lightblue;
+    background-color: #555555;
+    color: #FFFFFF;
 }
 
 #pad {
@@ -44,6 +50,30 @@ button:hover {
 
 #button-operators {
     margin-left: 3px;
+}
+
+#operator-divide, 
+#operator-multiply, 
+#operator-add, 
+#operator-subtract,
+#operator-equals {
+    background-color: #ffae67;
+    color: #FFFFFF;
+}
+button:hover,
+#operator-divide:hover, 
+#operator-multiply:hover, 
+#operator-add:hover, 
+#operator-subtract:hover,
+#operator-equals:hover,
+#button-clear:hover,
+#button-backspace:hover {
+    background-color: #ADD8E6;
+}
+
+#button-clear,
+#button-backspace {
+    background-color: #9c9c9c;
 }
 
 #calculator-container {
@@ -64,5 +94,9 @@ button:hover {
 }
 
 #button-clear {
+    width: 86px;
+}
+
+#digit-zero {
     width: 86px;
 }
