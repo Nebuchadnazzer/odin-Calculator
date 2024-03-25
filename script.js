@@ -75,48 +75,71 @@ function storeDigits() {
     digitValue = '';
 }
 
-digitButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        if (!isNaN(button.textContent) ){
-            digitValue += button.textContent;
-            updateDisplay(button.textContent);
-        }
-    });
-});
-
-operatorButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        storeDigits();
-        operators.push(button.textContent)
+function handleDigitButton(button) {
+    if (!isNaN(button.textContent) ){
+        digitValue += button.textContent;
         updateDisplay(button.textContent);
-        decimalButton.disabled = false;
-    });
-});
+}}
 
-operateButton.addEventListener('click', function() {
+function handleOperatorButtons(button) {
+    storeDigits();
+    operators.push(button.textContent)
+    updateDisplay(button.textContent);
+    decimalButton.disabled = false;
+}
+
+function handleOperateButton(button) {
     storeDigits();
     results = operate(variables, operators);
-    updateDisplay(operateButton.textContent);
-});
+    updateDisplay(button.textContent);
+}
 
-decimalButton.addEventListener('click', function() {
+function handleDecimalButton(button) {
     if (displayValue !== ''){
-        digitValue += decimalButton.textContent;
-        updateDisplay(decimalButton.textContent);
-        decimalButton.disabled = true;
+        digitValue += button.textContent;
+        updateDisplay(button.textContent);
+        button.disabled = true;
     }
-});
+}
 
-clearButton.addEventListener('click', function() {
+function handleClearButton() {
     displayValue = '';
     digitValue = '';
     results = 0;
     operators.length = 0;
     variables.length = 0;
     displayBox.textContent = '';
+}
+
+function handleBackSpaceButton() {
+    displayValue = displayValue.slice(0, -1)
+    updateDisplay();
+}
+
+digitButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        handleDigitButton(button);
+    });
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        handleOperatorButtons(button);
+    });
+});
+
+operateButton.addEventListener('click', function() {
+    handleOperateButton(operateButton);
+});
+
+decimalButton.addEventListener('click', function() {
+    handleDecimalButton(decimalButton);
+});
+
+clearButton.addEventListener('click', function() {
+    handleClearButton();
 });
 
 backspaceButton.addEventListener('click', function() {
-    displayValue = displayValue.slice(0, -1)
-    updateDisplay();
+    handleBackSpaceButton();
 });
