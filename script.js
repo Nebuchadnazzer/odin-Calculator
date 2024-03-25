@@ -143,3 +143,52 @@ clearButton.addEventListener('click', function() {
 backspaceButton.addEventListener('click', function() {
     handleBackSpaceButton();
 });
+
+// Keydown event listener
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+
+    // Handle digit buttons (0-9)
+    if (!isNaN(key)) {
+        const digitButton = document.querySelector(`#digit-${key}`);
+        // digit key only works when its console logged ??
+        console.log(`#digit-${key}`);
+        if (digitButton) {
+            handleDigitButton(digitButton);
+        }
+    }
+    // Handle operator buttons (+, -, *, /)
+    else if (['+', '-', '*', '/'].includes(key)) {
+        let selector;
+        switch (key) {
+            case '+':
+                selector = 'add'
+                break;
+            case '-':
+                selector = 'subtract'
+                break;
+            case '*':
+                selector = 'multiply'
+                break;
+            case '/':
+                selector = 'divide'
+                break;
+        }
+        const operatorButton = document.querySelector(`#operator-${selector}`);
+        if (operatorButton) {
+            handleOperatorButtons(operatorButton);
+        }
+    }
+    else if (key === '=') {
+        handleOperateButton(operateButton);
+    }
+    else if (key === '.') {
+        handleDecimalButton(decimalButton);
+    }
+    else if (key === 'c' || key === 'C') {
+        handleClearButton();
+    }
+    else if (key === 'Backspace') {
+        handleBackSpaceButton();
+    }
+});
