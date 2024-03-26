@@ -144,11 +144,8 @@ backspaceButton.addEventListener('click', function() {
     handleBackSpaceButton();
 });
 
-// Keydown event listener
 document.addEventListener('keydown', function(event) {
     const key = event.key;
-
-    // Handle digit buttons (0-9)
     if (!isNaN(key)) {
         const digitButton = document.querySelector(`#digit-${key}`);
         // digit key only works when its console logged ??
@@ -157,7 +154,6 @@ document.addEventListener('keydown', function(event) {
             handleDigitButton(digitButton);
         }
     }
-    // Handle operator buttons (+, -, *, /)
     else if (['+', '-', '*', '/'].includes(key)) {
         let selector;
         switch (key) {
